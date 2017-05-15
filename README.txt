@@ -1,0 +1,37 @@
+Notes on typescript etc
+
+
+1) Using with jQuery
+
+I had to get both jquery and the ts definition file for jquery.   See package.json     actaully i'm not sure i need jQuery itself?  NO - i've removed it. not required.
+    try removing it
+
+Then in my project ts file: /// <reference path="node_modules/@types/jquery/index.d.ts" />
+
+What i've done here is: get a definiton file and the lib so that the ts compiler knows what i mean by jquery. The reference command includes the definition file.
+
+https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html
+
+
+Nb. i tried another approach based on importing jquery  but then my final js file had:
+
+use strict
+exports.es5 = true
+
+or something like that and this broke in the browser because exports is not declared. 
+this is because i am not using import correctly - maybe because of issues with my jquery lib not properly exporting? or do i need a start file to set up exports?
+    import / require look like npm commands (at least require) 
+    
+so what i am not doing here is building the complete project into one file on the command line including backbone, bootstrap js etc etc
+and having them all pass through the ts compiler? is that what i want? how does this work with Angular? do you get angular in a ts version?    
+does the ts compliler act like webpack and manage your dependencies into one file?
+
+
+on modules see:
+https://auth0.com/blog/javascript-module-systems-showdown/
+https://www.typescriptlang.org/docs/handbook/modules.html
+
+in other words: i'm loading the dependencies in the browser and then using type definitions to inform the ts compiler about them to it doesn't break
+but i'm not loading the whole project server side - how would i do this?
+    Ts has a module loader system - but assume that it expects the modules to be in ts ? (could you use it to load non ts modules and supply the defintion files?)
+    webpack and grunt? could you build all your modules using webpack inc. ts ones and js ones and then as a grunt task run them through the ts compiler? (again i think you'd need definition files?)    
