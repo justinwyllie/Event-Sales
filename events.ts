@@ -4,35 +4,74 @@
 // <reference path="node_modules/@types/underscore/index.d.ts" />
 jQuery(function() {
 
+
     //TODO 
-    //use views
     //make the app a class https://www.typescriptlang.org/docs/handbook/classes.html
+
+    let pricing9x6: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
+    let pricing10x8: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
+    let pricing12x8: {print: number, mounted: number} = {print: 1.50, mounted: 10.00};
+    let pricing10x10: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
+    let pricing: {"9x6": object, "10x8": object, "12x8": object, "10x10": object} = {"9x6": pricing9x6, "10x8": pricing10x8, "12x8": pricing12x8, "10x10":pricing12x8};
     
-    //HACK - it will come from the back-end
-    var pricing9x6: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
-    var pricing10x8: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
-    var pricing12x8: {print: number, mounted: number} = {print: 1.50, mounted: 10.00};
-    var pricing10x10: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
-    var pricing: {"9x6": object, "10x8": object, "12x8": object, "10x10": object} = {"9x6": pricing9x6, "10x8": pricing10x8, "12x8": pricing12x8, "10x10":pricing12x8};
+     type Del = {
+        per_print: number,
+        per_mounted_print: number
+     }
     
-    var deliveryUK: {per_print: number, per_mounted_print: number} = {per_print: 0.50, per_mounted_print: 1.00};
-    var deliveryOs: {per_print: number, per_mounted_print: number} = {per_print: 1.00, per_mounted_print: 2.00};
-    var delivery: {deliveryUK: object, deliveryOs: object} = {deliveryUK: deliveryUK, deliveryOs: deliveryOs};
-    
-    let orders = {};
+    let deliveryUK: Del = {per_print: 0.50, per_mounted_print: 1.00};
+    let deliveryOs: Del = {per_print: 1.00, per_mounted_print: 2.00};
+    let delivery: {deliveryUK: Del, deliveryOs: Del} = {deliveryUK: deliveryUK, deliveryOs: deliveryOs};
     
     let getHighestOrderLineNumber = function(orders: object): number {
-    
         let orderLineNumbers: string[] = [];
         for (let orderNumber in orders) {
             orderLineNumbers.push(orderNumber);    
         }
-        
         return Math.max.apply(Math, orderLineNumbers);
-    
     };
     
-    let app: {pricing: object, delivery: object, orders: object} = {pricing: pricing, delivery: delivery, orders: orders};
+    let calculateAndSetDeliveryAndTotals = function(country: string): void {
+    
+        let cummulativePrice: number = 0;
+        let cummulativeDel: number = 0;
+        let overallTotal: number = 0;
+        let delModel: Del;
+        
+        if (country === 'GBR') {
+            delModel = this.delivery.deliveryUK;
+        } else {
+            delModel = this.delivery.deliveryOs;
+        }
+        
+        for (let i in this.orders) {
+            let orderLine: OrderLineModel = orders[i];
+            //nb TS will typecheck this: orderLine.price but not this: orderLine.get("price"). 
+            //even though the get method on the Class is typed. is it because the latter is only resolved at runtime?
+            let price: number = orderLine.price;
+            let mount: boolean = orderLine.mount;
+            let qty: number = orderLine.qty;
+            if (mount) {
+                cummulativeDel = cummulativeDel + (qty * delModel.per_mounted_print);    
+            } else {
+                cummulativeDel = cummulativeDel + (qty * delModel.per_print);     
+            }
+            cummulativePrice = cummulativePrice + price;
+        }
+        overallTotal = cummulativePrice +  cummulativeDel;
+        
+        this.customerOrderModel.goods_total =  cummulativePrice;
+        this.customerOrderModel.delivery_charge =  cummulativePrice;
+        this.customerOrderModel.total_cost =  cummulativePrice;
+        
+        
+         
+        
+        $('#del').html(Number(cummulativeDel).toFixed(2));
+        $('#total').html(Number(overallTotal).toFixed(2));
+    
+    }
+
 
     let orderLineTmplFnc = _.template($("#order_line").html());
 
@@ -126,36 +165,110 @@ jQuery(function() {
     }
     
    class CustomerOrderModel extends Backbone.Model {
+   
+        defaults(): any {
+            return {country: 'GBR'};
+        }
+
+        
         get Id(): number {
             return this.get('Id');
         }
         set Id(value: number) {
             this.set('Id', value);
         }
-        //name, organisation, email
-        set customerDetails(value: object) {
-            this.set('customerDetails', value);
+       
+        get name(): string {
+            return this.get('name');
         }
-        get customerDetails(): object {
-            return this.get('customerDetails');
+        set name(value: string) {
+            this.set('name', value);
         }
-        //address_name, addres1, address1, city, postcode, country
-        set customerAddress(value: object) {
-            this.set('customerAddress', value);
+        
+        get organisation(): string {
+            return this.get('organisation');
         }
-        get customerAddress(): object {
-            return this.get('customerAddress');
+        set organisation(value: string) {
+            this.set('organisation', value);
         }
-        //goods, del, total
-        set totals(value: object) {
-            this.set('totals', value);
+        
+        get email(): string {
+            return this.get('organisation');
         }
-        get totals(): object {
-            return this.get('totals');
+        set email(value: string) {
+            this.set('email', value);
+        }
+        
+        get address_name(): string {
+            return this.get('address_name');
+        }
+        set address_name(value: string) {
+            this.set('address_name', value);
+        }
+        
+ 
+        
+        get address1(): string {
+            return this.get('address1');
+        }
+        set address1(value: string) {
+            this.set('address1', value);
+        }
+        
+        get address2(): string {
+            return this.get('address2');
+        }
+        set address2(value: string) {
+            this.set('address2', value);
+        }
+        
+        get city(): string {
+            return this.get('city');
+        }
+        set city(value: string) {
+            this.set('city', value);
+        }
+        
+        get postcode(): string {
+            return this.get('postcode');
+        }
+        set postcode(value: string) {
+            this.set('postcode', value);
+        }
+        
+        get country(): string {
+            return this.get('country');
+        }
+        set country(value: string) {
+            this.set('country', value);
+        }
+        
+        get goods_total(): number {
+            return this.get('goods_total');
+        }
+        set goods_total(value: number) {
+            this.set('goods_total', value);
+        }
+        
+        get delivery_charge(): number {
+            return this.get('delivery_charge');
+        }
+        set delivery_charge(value: number) {
+            this.set('delivery_charge', value);
+        }
+        
+        get total_cost(): number {
+            return this.get('total_cost');
+        }
+        set total_cost(value: number) {
+            this.set('total_cost', value);
         }
 
+
         constructor() {
+
             super();
+
         }
     }    
     
@@ -198,8 +311,19 @@ jQuery(function() {
         let size = $(this).val(); 
         app.orders[orderNumber].size = size.replace(/"/g, '').replace(/ /g,''); 
     })
-        
- 
+    
+    $("#content").on("change", ".cust_input", function(this) {
+        let val = $(this).val();
+        let field =  $(this).attr("id");
+        app.customerOrderModel[field] = val;
+        console.log(app.customerOrderModel);
+    })
+    
+    $(".panel_hook").on("show.bs.collapse", function(this) {
+        let country = app.customerOrderModel.country;
+        calculateAndSetDeliveryAndTotals.call(app, country);    
+    })
+                            
         
        $(".order_lines_container").on("click", ".check", function(this) {
        
@@ -275,8 +399,9 @@ jQuery(function() {
         console.log(app.orders);
 
     });
+ 
        
-//render the first order line  
+//setup 
   
 let order_init: { order_line_number: number; } = { order_line_number: 1};
 let html = orderLineTmplFnc(order_init); 
@@ -284,9 +409,14 @@ $(".order_lines_container").append(html);
 //create model for first order line and add to collection
 let orderModel = new OrderLineModel();
 orderModel.Id = 1;
+let orders = {};
+let customerOrderModel = new CustomerOrderModel();
+
+let app: {pricing: object, delivery: object, orders: object, customerOrderModel: CustomerOrderModel } = 
+    {pricing: pricing, delivery: delivery, orders: orders, customerOrderModel: customerOrderModel};
 app.orders[1] =  orderModel;
 
-//lib functions
+
 
 
 

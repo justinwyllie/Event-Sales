@@ -183,7 +183,7 @@
   
   
            
-      <div class="container">
+      <div class="container" id="content">
       
            <div class="row">
                 <div class="col-md-12">
@@ -226,17 +226,17 @@
                                             <div class="panel-body">
                                                     <div class="form-group">
                                                         <label for="name">Name</label>
-                                                        <input type="text" class="form-control" id="name" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="name" placeholder="" required>
                                                     </div>
                                               
                                                     <div class="form-group">
                                                         <label for="organisation">Organisation</label>
-                                                        <input type="text" class="form-control" id="organisation" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="organisation" placeholder="">
                                                     </div>
                                               
                                                     <div class="form-group">
                                                         <label for="email">Email</label>
-                                                        <input type="email" class="form-control" id="email" placeholder="">
+                                                        <input type="email" class="form-control cust_input" id="email" placeholder="" required>
                                                     </div>
                                                 </div>
                                             </div>    
@@ -265,7 +265,7 @@
                                     </div>        
                                     
                               
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default panel_hook">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h4 class="panel-title">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -282,32 +282,32 @@
                                                    
                                                    <div class="form-group">
                                                         <label for="address_name">Name</label>
-                                                        <input type="text" class="form-control" id="address_name" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="address_name" placeholder="">
                                                     </div>
                                             
                                                     <div class="form-group">
                                                         <label for="address1">Address 1</label>
-                                                        <input type="text" class="form-control" id="address1" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="address1" placeholder="">
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="address2">Address 2</label>
-                                                        <input type="text" class="form-control" id="address2" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="address2" placeholder="">
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="city">City</label>
-                                                        <input type="text" class="form-control" id="city" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="city" placeholder="">
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="postcode">Postcode</label>
-                                                        <input type="text" class="form-control" id="postcode" placeholder="">
+                                                        <input type="text" class="form-control cust_input" id="postcode" placeholder="">
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="country">Country</label>
-                                                        <select id="country">
+                                                        <select id="country" class="cust_input">
                                                                 <option value="AFG">Afghanistan</option>
                                                             	<option value="ALA">Åland Islands</option>
                                                             	<option value="ALB">Albania</option>
@@ -563,7 +563,7 @@
                                                     
                                                     <div class="form-group">
                                                         <label for="del">Delivery charge: </label>
-                                                        <span id="del">£1.00</span>   
+                                                        £<span id="del"></span>   
                                                     </div>
                                               
                                                     
@@ -571,7 +571,7 @@
                                             </div>    
                                     </div> 
                                     
-                                    <div class="panel panel-default">
+                                    <div class="panel panel-default panel_hook">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h4 class="panel-title">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -583,7 +583,7 @@
                                             <div class="panel-body">
                                                 <div class="form-group">
                                                         <label for="total">Total charge: </label>
-                                                        <span id="total">£11.00</span>   
+                                                        £<span id="total"></span>   
                                                 </div>
                                                 
                                                 <div>
