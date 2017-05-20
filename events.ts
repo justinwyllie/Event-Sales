@@ -316,13 +316,82 @@ jQuery(function() {
         let val = $(this).val();
         let field =  $(this).attr("id");
         app.customerOrderModel[field] = val;
-        console.log(app.customerOrderModel);
+  
     })
     
     $(".panel_hook").on("show.bs.collapse", function(this) {
-        let country = app.customerOrderModel.country;
-        calculateAndSetDeliveryAndTotals.call(app, country);    
+       let country = app.customerOrderModel.country;
+       calculateAndSetDeliveryAndTotals.call(app, country);    
     })
+    
+    $("select#country").on("change", function(this) {
+       let country = $(this).val(); 
+       app.customerOrderModel.country = country;
+       calculateAndSetDeliveryAndTotals.call(app, country);    
+    })
+    
+    $("#paypal").click(function() {
+    
+        //TODO. force repopulation of models in case they are stale e.g. if use has gone somewhere else and come back with the back button. 
+             
+       
+        let customerData: object = app.customerOrderModel.toJSON();
+        let orders: {} = {};
+        for (let i in app.orders) {
+            orders[i] =  app.orders[i].toJSON();
+        }
+        
+        let amount: number = app.customerOrderModel.total_cost;
+        
+        let orderData: {orders: object, customerData: object} = {orders: orders, customerData:  customerData};
+        
+        let showUserError = function(msg: string): void {
+            $("#user_message").html(msg);
+            $("#user_message").removeClass("alert-success");
+            $("#user_message").removeClass("alert-info");
+            $("#user_message").addClass("alert-danger");
+            $("#user_message").show();
+        }
+        
+        let showUserSuccess =    function(msg: string): void {
+            $("#user_message").html(msg);
+            $("#user_message").removeClass("alert-danger");
+            $("#user_message").removeClass("alert-info");
+            $("#user_message").addClass("alert-success");
+            $("#user_message").show();
+        }
+        
+        let custEmail: string = app.customerOrderModel.get("email");
+        if  ((custEmail === "") || (custEmail == undefined) ) {
+            showUserError("Please enter your email");
+         
+        } else {
+        
+                let orderDataStr: string = JSON.stringify(orderData);
+                $("#user_message").hide();
+                $.ajax({
+                       url: 'order_handler.php',
+                       method: 'POST',
+                       data: orderDataStr,
+                       dataType: 'json',
+                       success: function(result) {
+                            if (result.result) {
+                                let orderId: number = result.orderId;
+                                $("#paypal_form #item_number").val(orderId);
+                                $("#paypal_form #amount").val(amount);
+                                $("#paypal_form").submit();
+                                
+                            } else {
+                                showUserError("Sorry. There has been an error. Please contact me for assistance");   
+                            }
+                       },
+                       error: function() {
+                            showUserError("Sorry. There has been an error. Please contact me for assistance");
+                       }
+                });
+            
+        }        
+    });
                             
         
        $(".order_lines_container").on("click", ".check", function(this) {
@@ -396,7 +465,7 @@ jQuery(function() {
         let orderNumber = parent.data("order-line");
         parent.remove();
         delete app.orders[orderNumber];
-        console.log(app.orders);
+   
 
     });
  

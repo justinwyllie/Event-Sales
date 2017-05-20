@@ -9,7 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>         
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
     <script src="/underscore.js"></script>             
-    <script src="/backbone.js"></script>     
+    <script src="/backbone.js"></script>   
+    <script src="json2.js"></script>     
 
     
 
@@ -27,13 +28,22 @@
        $(function() {
        
            if (q.indexOf("thanks") >= 0) {
-                $("#message").html('<div class="alert alert-success">Thanks for your order</div>');
+                $("#user_message").html('Thanks for your order');
+                $("#user_message").addClass("alert-success");
+                $("#user_message").removeClass("alert-danger");
            
            }  else if (q.indexOf("cancel") >= 0) {
-                 $("#message").html('<div class="alert alert-info">Transaction cancelled</div>'); 
+                 $("#user_message").html('Transaction cancelled'); 
+                 $("#user_message").removeClass("alert-success");
+                $("#user_message").addClass("alert-info");
            }  else {
-              $("#message").html('');   
+              $("#user_message").html(''); 
+              $("#user_message").removeClass("alert-success");
+              $("#user_message").removeClass("alert-info");
+              $("#user_message").removeClass("alert-danger");  
            }
+           
+           $(".data_form")[0].reset();
      
        
         });   
@@ -99,6 +109,12 @@
             .well
             {
                background: #e6f2ff;
+            }
+            
+            #user_message
+            {
+                padding: 10px;
+                border-radius: 5px;
             }
     
     </style>
@@ -187,13 +203,13 @@
       
            <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">OCVA Awards 2017</h1>
+                    <h1 class="text-center">Master Awards 2017</h1>
                 </div>    
            </div>
            
            <div class="row">
                 <div class="col-md-12">
-                    <div id="message"></div>
+                    <div id="user_message"></div>
                 </div> 
            </div>
            
@@ -210,11 +226,11 @@
            <div class="row">
                 <div class="col-md-12">
            
-                    <form class="">
+                    <form class="data_form">
                           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     
                     
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" id="user_details_panel">
                                     <div class="panel-heading" role="tab" id="headingOne">
                                         <h4 class="panel-title">
                                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -612,6 +628,19 @@
 
       
       </div>     
+      
+       <form id="paypal_form" action="https://www.paypal.com/cgi-bin/webscr" 
+            <input type="hidden" name="item_number" value="">
+            <input type="hidden" name="amount" id="amount" value="">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="no_note" value="0">
+            <input type="hidden" name="business" value="info@justinwylliephotography.com">
+            <input type="hidden" id="currency_code" name="currency_code" value="GBP">
+            <input type="hidden" name="return" value="http://justinwylliephotography.com/clients/master/awards2017/prints?thanks">
+            <input type="hidden" name="charset" value="UTF-8">
+            <input type="hidden" name="cancel_return" value="http://justinwylliephotography.com/clients/master/awards2017/prints?cancel">
+            <input id="item_name" type="hidden" name="item_name" value="Master Awards 2017 Prints">
+        </form>
            
            
   </body>

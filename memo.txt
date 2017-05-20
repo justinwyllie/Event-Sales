@@ -1,3 +1,39 @@
+TODO
+
+back button not supported because we lose all the data from the models. (it still shows in form cos of browser retnetion)
+
+use the PayPal notify handler
+
+fix DB to have a clients col
+
+validation
+
+accordion panel control
+
+del starts at 50p because we init first order model
+
+make order data readable
+
+paypal is now putting up a delivery address capture  - but i am handling that. there must be a way to stop this. (effects JWP and POS as well)
+
+handle case of ajax call to secure order takes forever. 
+
+
+rewrite it - use Angular
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Notes on typescript etc
 
 
