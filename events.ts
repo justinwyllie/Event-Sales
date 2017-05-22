@@ -362,8 +362,31 @@ jQuery(function() {
         }
         
         let custEmail: string = app.customerOrderModel.get("email");
-        if  ((custEmail === "") || (custEmail == undefined) ) {
-            showUserError("Please enter your email");
+        let custAddress1 = app.customerOrderModel.get("address1");
+        let custCity = app.customerOrderModel.get("city");
+        let custCountry = app.customerOrderModel.get("country");
+        let custPostcode = app.customerOrderModel.get("postcode");
+        //TODO this is  a hack - use model validation
+        let valid: boolean = true;
+        if ((custEmail === "") || (custEmail == undefined) )  {
+            valid = false;
+        }
+        if ((custAddress1 === "") || (custAddress1 == undefined) )  {
+            valid = false;
+        }
+        if ((custCity === "") || (custCity == undefined) )  {
+            valid = false;
+        }
+       if ((custCountry === "") || (custCountry == undefined) )  {
+            valid = false;
+        }
+        if ((custPostcode === "") || (custPostcode == undefined) )  {
+            valid = false;
+        }
+        
+        
+        if  (valid === false ) {
+            showUserError("Please check the form and complete all required fields");
          
         } else {
         

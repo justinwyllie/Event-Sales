@@ -116,6 +116,11 @@
                 padding: 10px;
                 border-radius: 5px;
             }
+            
+            .req
+            {
+                color: #ff0000;
+            }
     
     </style>
   
@@ -219,7 +224,9 @@
                     <p>Thank-you for attending the event. This form is provided for you to order prints or mounted prints. Please complete all the fields. Payment can be
                     made via PayPal. (You don't need to have a PayPal account to pay with a Credit or Debit card). Orders will be sent out within 10 days. If you have 
                     any questions please email me at <a href="mailto:info@justinwylliephotography.com">info@justinwylliephotography.com</a>. Thank-you.</p>
-                 
+                    <p>
+                        Please note that fields marked <span class="req">*</span> are required. 
+                    </p>
                 </div> 
            </div>
            
@@ -251,7 +258,7 @@
                                                     </div>
                                               
                                                     <div class="form-group">
-                                                        <label for="email">Email</label>
+                                                        <label for="email">Email <span class="req">*</span></label>
                                                         <input type="email" class="form-control cust_input" id="email" placeholder="" required>
                                                     </div>
                                                 </div>
@@ -302,7 +309,7 @@
                                                     </div>
                                             
                                                     <div class="form-group">
-                                                        <label for="address1">Address 1</label>
+                                                        <label for="address1">Address 1 <span class="req">*</span></label>
                                                         <input type="text" class="form-control cust_input" id="address1" placeholder="">
                                                     </div>
                                                     
@@ -312,17 +319,17 @@
                                                     </div>
                                                     
                                                     <div class="form-group">
-                                                        <label for="city">City</label>
+                                                        <label for="city">City <span class="req">*</span></label>
                                                         <input type="text" class="form-control cust_input" id="city" placeholder="">
                                                     </div>
                                                     
                                                     <div class="form-group">
-                                                        <label for="postcode">Postcode</label>
+                                                        <label for="postcode">Postcode <span class="req">*</span></label>
                                                         <input type="text" class="form-control cust_input" id="postcode" placeholder="">
                                                     </div>
                                                     
                                                     <div class="form-group">
-                                                        <label for="country">Country</label>
+                                                        <label for="country">Country <span class="req">*</span></label>
                                                         <select id="country" class="cust_input">
                                                          <option value="AF">Afghanistan</option>
                                                         	<option value="AX">Åland Islands</option>
