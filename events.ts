@@ -13,7 +13,8 @@ jQuery(function() {
     let pricing12x8: {print: number, mounted: number} = {print: 1.50, mounted: 10.00};
     let pricing10x10: {print: number, mounted: number} = {print: 1.00, mounted: 9.00};
     let pricing12x12: {print: number, mounted: number} = {print: 1.50, mounted: 11.00};
-    let pricing: {"9x6": object, "10x8": object, "12x8": object, "10x10": object} = {"9x6": pricing9x6, "10x8": pricing10x8, "12x8": pricing12x8, "10x10":pricing12x8};
+    let pricing: { "9x6": object, "10x8": object, "12x8": object, "10x10": object, "12x12": object} = 
+    { "9x6": pricing9x6, "10x8": pricing10x8, "12x8": pricing12x8, "10x10":pricing12x8, "12x12": pricing12x12};
     
      type Del = {
         per_print: number,
