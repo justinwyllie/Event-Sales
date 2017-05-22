@@ -176,7 +176,7 @@
                 
                 <div class="form-group">
                     <label for="qty_<%= order_line_number %>">Quantity: </label>
-                    <input type="number" min="0" class="form-control qty" id="qty_<%= order_line_number %>" placeholder="1">
+                    <input type="number" min="0" class="form-control qty" id="qty_<%= order_line_number %>" placeholder="0">
                 </div>
          
           
@@ -629,7 +629,7 @@
       
       </div>     
       
-       <form id="paypal_form" action="https://www.paypal.com/cgi-bin/webscr" 
+       <form id="paypal_form" action="https://www.sandbox.paypal.com/cgi-bin/webscr" 
             <input type="hidden" name="item_number" value="">
             <input type="hidden" name="amount" id="amount" value="">
             <input type="hidden" name="cmd" value="_xclick">

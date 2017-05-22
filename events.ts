@@ -157,7 +157,7 @@ jQuery(function() {
             super();
             //TODO use defaults  see above links for how to do this. this makes multiple calls to calcPrice
             this.set("size", "");
-            this.set("qty", 1);
+            this.set("qty", 0);
             this.set("mount", false);
             this.set("file", "");
             
@@ -332,8 +332,6 @@ jQuery(function() {
     
     $("#paypal").click(function() {
     
-        //TODO. force repopulation of models in case they are stale e.g. if use has gone somewhere else and come back with the back button. 
-             
        
         let customerData: object = app.customerOrderModel.toJSON();
         let orders: {} = {};
