@@ -127,7 +127,7 @@ jQuery(function() {
             return this.get('price');
         }
         
-        private caclulatePrice() {
+        private calculatePrice() {
             let price = 0.00;
             if ((this.file !== "") && (this.size !== "") && (this.file != undefined) && (this.size != undefined)) {
                 let size = this.size;
@@ -154,10 +154,11 @@ jQuery(function() {
         }
     
         initialize() {
-           _.bindAll(this, 'caclulatePrice', 'reset');
-           let that = this;
-           this.on("change",  function() { that.caclulatePrice()  });
-
+            //https://stackoverflow.com/questions/44056774/lost-reference-to-this-in-typescript-backbone-situation for various ways to do this: all these work
+            //this.on("change", () => {this.calculatePrice()})   ;
+            //this.on("change",  this.calculatePrice, this );
+            this.listenTo(this, "change", this.calculatePrice)  ;
+           
         }
     
         constructor() {
