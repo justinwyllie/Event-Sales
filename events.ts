@@ -376,7 +376,13 @@ jQuery(function() {
                             if (result.result) {
                                 let orderId: number = result.orderId;
                                 $("#paypal_form #item_number").val(orderId);
-                                $("#paypal_form #amount").val(amount);
+                            
+                                $("#paypal_form #address1").val(customerData.address1);
+                                $("#paypal_form #address2").val(customerData.address2);
+                                $("#paypal_form #city").val(customerData.city);
+                                $("#paypal_form #country").val(customerData.country);
+                                $("#paypal_form #email").val(customerData.email);
+                                $("#paypal_form #zip").val(customerData.postcode);
                                 $("#paypal_form").submit();
                                 
                             } else {

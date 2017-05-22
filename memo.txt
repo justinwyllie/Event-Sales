@@ -27,6 +27,9 @@ handle case of ajax call to secure order takes forever.
 
 make the client name a variable so i don't have to change it every time (which will be impossible when there are multiple clients)
     prints.html
+    
+PayPal - for countries with a state add the state field. 
+https://developer.paypal.com/docs/classic/api/state_codes/    
 
 
 rewrite it - use Angular
