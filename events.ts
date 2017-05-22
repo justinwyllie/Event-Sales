@@ -4,6 +4,10 @@
 // <reference path="node_modules/@types/underscore/index.d.ts" />
 declare var ajaxPath: any;
 declare var PayPalUrl: any;
+declare var returnUrl: any;
+declare var cancelUrl: any;
+declare var ClientEventName: any;
+
 jQuery(function() {
 
     //TODO 
@@ -402,6 +406,10 @@ jQuery(function() {
                             if (result.result) {
                                 let orderId: number = result.orderId;
                                 $("#paypal_form").attr("action", PayPalUrl);
+                                $("#paypal_form #item_name").val(ClientEventName);
+                                $("#paypal_form #return").val(returnUrl);
+                                $("#paypal_form #cancel_return").val(cancelUrl);
+                               
                                 $("#paypal_form #item_number").val(orderId);
                                 $("#paypal_form #amount").val(amount);
                                 $("#paypal_form #address1").val(app.customerOrderModel.address1);
