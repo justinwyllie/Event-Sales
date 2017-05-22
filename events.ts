@@ -3,6 +3,7 @@
 // <reference path="node_modules/@types/backbone/index.d.ts" />
 // <reference path="node_modules/@types/underscore/index.d.ts" />
 declare var ajaxPath: any;
+declare var PayPalUrl: any;
 jQuery(function() {
 
     //TODO 
@@ -400,7 +401,8 @@ jQuery(function() {
                        success: function(result) {
                             if (result.result) {
                                 let orderId: number = result.orderId;
-                                $("#paypal_form #item_number").val(result.orderId);
+                                $("#paypal_form").attr("action", PayPalUrl);
+                                $("#paypal_form #item_number").val(orderId);
                                 $("#paypal_form #amount").val(amount);
                                 $("#paypal_form #address1").val(app.customerOrderModel.address1);
                                 $("#paypal_form #address2").val(app.customerOrderModel.address2);

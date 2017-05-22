@@ -25,7 +25,7 @@
         //change these 3 lines to customise for a client
         var ClientDir = 'master';
         var ClientEventName = 'Master Awards 2017';
-        var SandBox = "sandbox."; //sandbox. becomes empty string for client
+        var PayPalUrl = "https://www.sandbox.paypal.com/cgi-bin/webscr"  ; //lose the sandbox. on client
         
         
 
@@ -647,7 +647,7 @@
       
       </div>     
       
-       <form id="paypal_form" action="https://www.<script>document.write(Sandbox)</script>paypal.com/cgi-bin/webscr"  >
+       <form id="paypal_form" action=""  >
             <input type="hidden" name="item_number" id="item_number" value="">
             <input type="hidden" name="amount" id="amount" value="">
             <input type="hidden" name="cmd" value="_xclick">
