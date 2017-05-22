@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="generator" content="PSPad editor, www.pspad.com">
-  <title>Master Awards 2017</title>
+  
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>         
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
@@ -22,7 +22,16 @@
     <script>
         "use strict";
         
-       var ajaxPath = "http://justinwylliephotography.com/clients/master/awards2017/";  
+        //change these 3 lines to customise for a client
+        var ClientDir = 'master';
+        var ClientEventName = 'Master Awards 2017';
+        var SandBox = "sandbox."; //sandbox. becomes empty string for client
+        
+        
+
+       document.write("<title>" + ClientEventName + "</title>"); 
+       
+       var ajaxPath = "http://justinwylliephotography.com/clients/"+ClientDir+"/awards2017/";  
         
        var loc = window.location;
        var q = loc.search;
@@ -210,7 +219,7 @@
       
            <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">Master Awards 2017</h1>
+                    <h1 class="text-center"><script>document.write(ClientEventName)</script></h1>
                 </div>    
            </div>
            
@@ -638,17 +647,17 @@
       
       </div>     
       
-       <form id="paypal_form" action="https://www.sandbox.paypal.com/cgi-bin/webscr"  >
+       <form id="paypal_form" action="https://www.<script>document.write(Sandbox)</script>paypal.com/cgi-bin/webscr"  >
             <input type="hidden" name="item_number" id="item_number" value="">
             <input type="hidden" name="amount" id="amount" value="">
             <input type="hidden" name="cmd" value="_xclick">
             <input type="hidden" name="no_note" value="0">
             <input type="hidden" name="business" value="info@justinwylliephotography.com">
             <input type="hidden" id="currency_code" name="currency_code" value="GBP">
-            <input type="hidden" name="return" value="http://justinwylliephotography.com/clients/master/awards2017/prints?thanks">
+            <input type="hidden" name="return" value="http://justinwylliephotography.com/clients/<script>document.write(ClientDir)</script>/awards2017/prints?thanks">
             <input type="hidden" name="charset" value="UTF-8">
-            <input type="hidden" name="cancel_return" value="http://justinwylliephotography.com/clients/master/awards2017/prints?cancel">
-            <input id="item_name" type="hidden" name="item_name" value="Master Awards 2017 Prints">
+            <input type="hidden" name="cancel_return" value="http://justinwylliephotography.com/clients/<script>document.write(ClientDir)</script>/awards2017/prints?cancel">
+            <input id="item_name" type="hidden" name="item_name" value="<script>document.write(ClientEventName)</script>">
             <input type="hidden" name="address_override" value="1">
             
             <input type="hidden" name="address1" id="address1" value="">
