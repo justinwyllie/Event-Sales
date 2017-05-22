@@ -5,6 +5,8 @@
 jQuery(function() {
 
 
+    declare var ajaxPath: any;
+
     //TODO 
     //make the app a class https://www.typescriptlang.org/docs/handbook/classes.html
 
