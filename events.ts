@@ -61,8 +61,8 @@ jQuery(function() {
         overallTotal = cummulativePrice +  cummulativeDel;
         
         this.customerOrderModel.goods_total =  cummulativePrice;
-        this.customerOrderModel.delivery_charge =  cummulativePrice;
-        this.customerOrderModel.total_cost =  cummulativePrice;
+        this.customerOrderModel.delivery_charge =  cummulativeDel;
+        this.customerOrderModel.total_cost =  overallTotal;
         
         
          
