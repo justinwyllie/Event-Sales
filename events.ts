@@ -388,11 +388,12 @@ jQuery(function() {
         if ((custPostcode === "") || (custPostcode == undefined) )  {
             valid = false;
         }
-        
-        
-        if  (valid === false ) {
+    
+        //bit of a hack to check they've ordered something
+        if (amount == 0 )  {
+            showUserError("Please check that you have ordered at least one item");    
+        } else if  (valid === false ) {
             showUserError("Please check the form and complete all required fields");
-         
         } else {
         
                 let orderDataStr: string = JSON.stringify(orderData);
