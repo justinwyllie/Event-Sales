@@ -393,7 +393,7 @@ jQuery(function() {
                 let orderDataStr: string = JSON.stringify(orderData);
                 $("#user_message").hide();
                 $.ajax({
-                       url: 'order_handler.php',
+                       url: ajaxPath + 'order_handler.php',
                        method: 'POST',
                        data: orderDataStr,
                        dataType: 'json',
@@ -430,7 +430,7 @@ jQuery(function() {
             var file = parent.find(".file").val();
         
             $.ajax({
-               url: 'get_file_ratio.php',
+               url: ajaxPath + 'get_file_ratio.php',
                method: 'GET',
                data: 'file='+file,
                dataType: 'json',
