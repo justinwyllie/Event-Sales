@@ -376,7 +376,7 @@ jQuery(function() {
                             if (result.result) {
                                 let orderId: number = result.orderId;
                                 $("#paypal_form #item_number").val(orderId);
-                            
+                                $("#paypal_form #amount").val(amount);
                                 $("#paypal_form #address1").val(app.customerOrderModel.address1);
                                 $("#paypal_form #address2").val(app.customerOrderModel.address2);
                                 $("#paypal_form #city").val(app.customerOrderModel.city);
