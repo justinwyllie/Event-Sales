@@ -38,7 +38,7 @@ jQuery(function() {
         let overallTotal: number = 0;
         let delModel: Del;
         
-        if (country === 'GBR') {
+        if (country === 'GB') {
             delModel = this.delivery.deliveryUK;
         } else {
             delModel = this.delivery.deliveryOs;
@@ -167,7 +167,7 @@ jQuery(function() {
    class CustomerOrderModel extends Backbone.Model {
    
         defaults(): any {
-            return {country: 'GBR'};
+            return {country: 'GB'};
         }
 
         
