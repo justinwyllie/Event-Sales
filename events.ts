@@ -437,7 +437,7 @@ jQuery(function() {
                success: function(result) {
                     if (result.result) {
                         parent.find(".pic_holder").empty();
-                        parent.find(".pic_holder").append($("<img />").attr("src", "thumbs/"+result["path"]));
+                        parent.find(".pic_holder").append($("<img />").attr("src", ajaxPath+"thumbs/"+result["path"]));
                         parent.find(".pic_missing").hide();
                         if (Array.isArray(result.size)) {
                             var tmplFnc = _.template($("#multiple_sizes").html()); 
