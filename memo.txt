@@ -1,3 +1,10 @@
+CHANGES TO MAKE FOR EACH CLIENT WHEN TAKING CHANGES FROM MASTER:
+
+i. prints.html - search for master
+ii. on set up of each new client install @types - see below
+iii.
+
+
 TODO
 
 back button not supported because we lose all the data from the models. (it still shows in form cos of browser retnetion)
