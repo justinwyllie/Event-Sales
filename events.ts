@@ -377,12 +377,12 @@ jQuery(function() {
                                 let orderId: number = result.orderId;
                                 $("#paypal_form #item_number").val(orderId);
                             
-                                $("#paypal_form #address1").val(customerData.address1);
-                                $("#paypal_form #address2").val(customerData.address2);
-                                $("#paypal_form #city").val(customerData.city);
-                                $("#paypal_form #country").val(customerData.country);
-                                $("#paypal_form #email").val(customerData.email);
-                                $("#paypal_form #zip").val(customerData.postcode);
+                                $("#paypal_form #address1").val(app.customerOrderModel.address1);
+                                $("#paypal_form #address2").val(app.customerOrderModel.address2);
+                                $("#paypal_form #city").val(app.customerOrderModel.city);
+                                $("#paypal_form #country").val(app.customerOrderModel.country);
+                                $("#paypal_form #email").val(app.customerOrderModel.email);
+                                $("#paypal_form #zip").val(app.customerOrderModel.postcode);
                                 $("#paypal_form").submit();
                                 
                             } else {
