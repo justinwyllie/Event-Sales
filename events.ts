@@ -142,7 +142,7 @@ jQuery(function() {
         
         public reset() {
             this.set("size", "");
-            this.set("qty", 1);
+            this.set("qty", 0);
             this.set("mount", false);
             this.set("file", "");
             $(".order_lines_container").trigger("priceReset", {orderNumber: this.Id});
