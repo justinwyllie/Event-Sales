@@ -1,4 +1,4 @@
-//run with --target ES5
+//run with tsc events.ts --target ES5
 /// <reference path="node_modules/@types/jquery/index.d.ts" />
 // <reference path="node_modules/@types/backbone/index.d.ts" />
 // <reference path="node_modules/@types/underscore/index.d.ts" />
